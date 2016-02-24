@@ -1,6 +1,6 @@
 ﻿var app = angular.module('MainApp',
     [
-        'MainApp.Public'
+        'MainApp.Public',
     ]
     );
 
