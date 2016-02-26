@@ -14,7 +14,7 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
     $stateProvider
         .state('home', {
             url: "/",
-            templateUrl: "/Hyperloop_frontend/App/Modules/Public/views/home.html",
+            templateUrl: "/App/Modules/Public/views/home.html",
             controller: 'MainApp.Public.homeCTRL'
         });
 
