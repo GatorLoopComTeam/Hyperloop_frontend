@@ -13,7 +13,7 @@ class Database
     // Store the single instance of Database
     private static $m_pInstance;
 
-    private $db_host='localhost';
+    private $db_host='localhost:33333';
     private $db_user = 'gavin';
     private $db_pass = 'password';
     private $db_name = 'gatorloop';
