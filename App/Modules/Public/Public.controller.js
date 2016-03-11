@@ -24,6 +24,11 @@
     .controller('MainApp.Public.shellCTRL',
     function ($scope, $http) {
 
+    })
+
+    .controller('MainApp.Public.guiCTRL',
+    function ($scope, $http) {
+
     });
 
 

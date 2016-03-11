@@ -16,7 +16,14 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
             url: "/",
             templateUrl: "/App/Modules/Public/views/home.html",
             controller: 'MainApp.Public.homeCTRL'
-        });
+        })
+
+    .state('gui', {
+        url: "/",
+        templateUrl: "/App/Modules/Public/views/other.html",
+        controller: 'MainApp.Public.homeCTRL'
+    });
+    
 
 });
 
