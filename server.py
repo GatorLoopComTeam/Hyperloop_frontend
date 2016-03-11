@@ -37,10 +37,10 @@ class MyServerProtocol(WebSocketServerProtocol):
         print("WebSocket connection open.")
 
     def onMessage(self, payload, isBinary):
-        # if isBinary:
-        #     print("Binary message received: {0} bytes".format(len(payload)))
-        # else:
-        #     print("Text message received: {0}".format(payload.decode('utf8')))
+        if isBinary:
+            print("Binary message received: {0} bytes".format(len(payload)))
+        else:
+            print("Text message received: {0}".format(payload.decode('utf8')))
 
         data = "15.01".encode('utf8');
         # echo back message verbatim
@@ -59,9 +59,9 @@ if __name__ == '__main__':
 
     log.startLogging(sys.stdout)
 
-    factory = WebSocketServerFactory(u"ws://127.0.0.1:9000", debug=False)
+    factory = WebSocketServerFactory(u"ws://127.0.0.1:63000", debug=False)
     factory.protocol = MyServerProtocol
     # factory.setProtocolOptions(maxConnections=2)
 
-    reactor.listenTCP(9000, factory)
+    reactor.listenTCP(63000, factory)
     reactor.run()
