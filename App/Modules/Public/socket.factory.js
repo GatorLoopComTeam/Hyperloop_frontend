@@ -1,13 +1,14 @@
 /**
  * Created by Gavin on 2/23/16.
  */
-angular.module('MainApp.Public').factory('socketService', function() {
+angular.module('MainApp.Public').factory('socketService', function(speedService) {
 
     var socket = null;
     var isopen = false;
+    var counter = 0;
 
 
-    socket = new WebSocket("ws://127.0.0.1:9000");
+    socket = new WebSocket("ws://127.0.0.1:63000");
     socket.binaryType = "arraybuffer";
 
     socket.onopen = function() {
@@ -18,6 +19,7 @@ angular.module('MainApp.Public').factory('socketService', function() {
     socket.onmessage = function(e) {
         if (typeof e.data == "string") {
             console.log("Text message received: " + e.data);
+            speedService.saveSpeed(e.data);
         } else {
             var arr = new Uint8Array(e.data);
             var hex = '';
@@ -29,6 +31,7 @@ angular.module('MainApp.Public').factory('socketService', function() {
     };
 
     socket.onclose = function(e) {
+        console.log(counter);
         console.log("Connection closed.");
         socket = null;
         isopen = false;
@@ -37,6 +40,7 @@ angular.module('MainApp.Public').factory('socketService', function() {
 
     function sendText() {
         if (isopen) {
+            counter += 1;
             socket.send("Hello, world!");
             console.log("Text message sent.");
         } else {

@@ -11,6 +11,9 @@
             setTimeout(function() {
                 clearInterval(textInterval);
             }, 10000);
+
+            //socketService.sendText();
+
         };
 
         $scope.sendBinary = function() {
