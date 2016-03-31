@@ -6,6 +6,7 @@
 </head>
 <body>
 	<h1>GatorLoop</h1>
+    <button ng-click="addData()">ADD DATA</button>
 	<div class = "containter">
 		<div class = "row">
 			<div class = 'col-xs-12'>
@@ -29,9 +30,12 @@
 			</div>
 			<div class = 'col-xs-4'>
 				<p id ="graphLabel">Velocity</p>
-				<img id = "graph" src = "/Content/images/accel.png">
+                <canvas id="line" class="chart chart-line" chart-options="chartOptions" chart-data="data"
+                    chart-labels="labels" chart-legend="true" chart-series="series"
+                    chart-click="onClick" >
+                </canvas>
 				<div id ="stop">
-					<p id ="stopMessage">STOP POD</p>
+					<button style="color: black;" ng-click="stopPod()">STOP POD</button>
 				</div>
 			</div>
 			<div class = 'col-xs-4'>
