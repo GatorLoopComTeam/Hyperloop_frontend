@@ -7,6 +7,7 @@
 <body>
 	<h1>GatorLoop</h1>
     <button ng-click="addData()">ADD DATA</button>
+    <button ng-click="makeLabelsSmaller()">CHANGE LABELS</button>
 	<div class = "containter">
 		<div class = "row">
 			<div class = 'col-xs-12'>
@@ -17,39 +18,47 @@
 			<div class = 'col-xs-4'>
 				<div id ="info">
 					<span id = "category"><u>Velocity</u></span>
-					<p id="value">68</p>
+					<p id="value">{{latestVelocity}}</p>
 				</div>
 				<div id ="info">
 					<span id = "category"><u>Acceleration</u></span>
-					<p id="value">68</p>
+					<p id="value">{{latestAcceleration}}</p>
 				</div>
 				<div id ="info">
 					<span id = "category"><u>Position</u></span>
-					<p id="value">68</p>
+					<p id="value">{{latestPosition}}</p>
 				</div>
 			</div>
 			<div class = 'col-xs-4'>
-				<p id ="graphLabel">Velocity</p>
-                <canvas id="line" class="chart chart-line" chart-options="chartOptions" chart-data="data"
-                    chart-labels="labels" chart-legend="true" chart-series="series"
+				<p ng-show="showGraph[0]" id ="graphLabel">Velocity</p>
+                <p ng-show="showGraph[1]" id ="graphLabel">Acceleration</p>
+                <p ng-show="showGraph[2]" id ="graphLabel">Temperature</p>
+                <canvas ng-show="{{showGraph[0]}}" id="velocityGraph" class="chart chart-line" chart-options="chartOptions" chart-data="velAccData"
+                    chart-labels="labels" chart-legend="{{showGraph[0]}}"
                     chart-click="onClick" >
                 </canvas>
-				<div id ="stop">
-					<button style="color: black;" ng-click="stopPod()">STOP POD</button>
-				</div>
+                <canvas ng-show="showGraph[1]" id="accelerationGraph" class="chart chart-line" chart-options="chartOptions" chart-data="velAccData"
+                    chart-labels="labels" chart-legend="{{showGraph[1]}}" chart-series="series"
+                    chart-click="onClick" >
+                </canvas>
+                <canvas ng-show="showGraph[2]" id="temperatureGraph" class="chart chart-line" chart-options="chartOptions" chart-data="velAccData"
+                    chart-labels="labels" chart-legend="{{showGraph[2]}}" chart-series="series"
+                    chart-click="onClick" >
+                </canvas>
+				<button type="button" class="btn btn-danger center-block">Stop Pod</button>
 			</div>
 			<div class = 'col-xs-4'>
 				<div id ="info">
 					<span id = "category"><u>Pitch</u></span>
-					<p id="value">68</p>
+					<p id="value">{{latestPitch}}</p>
 				</div>
 				<div id ="info">
 					<span id = "category"><u>Roll</u></span>
-					<p id="value">68</p>
+					<p id="value">{{latestRoll}}</p>
 				</div>
 				<div id ="info">
 					<span id = "category"><u>Yaw</u></span>
-					<p id="value">68</p>
+					<p id="value">{{latestYaw}}</p>
 				</div>
 			</div>
 		</div>
