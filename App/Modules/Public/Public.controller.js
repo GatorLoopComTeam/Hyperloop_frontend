@@ -25,6 +25,36 @@
 
     .controller('MainApp.Public.dashboardCTRL',
     function ($scope, $http) {
+
+        $scope.launchOffTime = 0;
+
+        $scope.secondCounter = 0;
+
+        // $scope.functionForeverySec = function(){
+        //     console.log("everySEC");
+        //     $scope.labels.push(++$scope.secondCounter);
+        //     $scope.velAccData[0].push("");
+        // }
+
+        $scope.setLaunchTime = function(){
+            $scope.launchOffTime = moment();
+            console.log("in current date! " + $scope.launchOffTime);
+            // window.setInterval(function(){
+            //     $scope.addData();
+            // }, 200);
+        }
+
+        //For now, the time is set for when the page originally loads
+        $scope.setLaunchTime();
+        
+        $scope.getTimeSinceLaunch = function(){
+            var newNow = moment();
+            console.log( "getTimeSinceLaunch " + (newNow.valueOf() - $scope.launchOffTime.valueOf()));
+            return (newNow.valueOf()- $scope.launchOffTime.valueOf());
+        }
+
+
+
         //LATEST STAT VARIABLES
         $scope.latestPosition = 0;
         $scope.latestVelocity = 0;
@@ -46,41 +76,79 @@
 
         $scope.currentPoint = 0;
 
-        $scope.velAccData = [];
+        $scope.velAccData = [
+            [0]
+        ];
 
         $scope.tempData = [0];
 
-        $scope.labels = [1,2,3,4,5];
+        $scope.labels = [0];
 
         $scope.series = ['Acceleration'];
 
         $scope.stopPod = function() {
-            //This function will need to handle sending a signal via websockets
+            //This function will need to handle sending a signal to stop the pod via websockets
             console.log("POD STOPPED");
         }
 
+
         $scope.addData = function() {
-
-            $scope.num = Math.random() * 777 % 100;
-
-            if ($scope.currentPoint >= $scope.labels.length - 1) {
-                $scope.labels.push($scope.currentPoint);
+            //adds dummy data to json object to be graphed
+            var len = $scope.velAccData[0].length;
+            var rand = Math.random() * 777 % 5;
+            if (rand % 2 == 0){
+                rand *= -1;
             }
+            $scope.num = len + rand;
 
-            $scope.velAccData.push($scope.num);
-            $scope.currentPoint++;
+            // if ($scope.currentPoint >= $scope.labels.length - 1) {
+            //     $scope.labels.push($scope.currentPoint);
+            // }
+            //
+            // $scope.velAccData[0].push($scope.num);
+            // $scope.currentPoint++;
+            //
+            // console.log("currentPoint " + $scope.currentPoint);
+            // console.log("labels " + $scope.labels);
+            // console.log("velAccData " + $scope.velAccData);
 
-            console.log("currentPoint " + $scope.currentPoint);
-            console.log("labels " + $scope.labels);
-            console.log("velAccData " + $scope.velAccData);
+            $scope.velAccData[0].push($scope.num);
+
+            $scope.labels.push(Math.round($scope.getTimeSinceLaunch()/1000));
+
+
+            $scope.makeLabelsSmaller();
+
+            console.log($scope.labels);
         }
 
         $scope.onClick = function (points, evt) {
+            //debugs clicks on graph, might not be needed
             console.log(points, evt);
         };
 
         $scope.makeLabelsSmaller = function() {
+            //hacky fix for when theres lots of labels
             var skip = 5;
+
+            if ($scope.labels.length > 50) {
+                skip = 10;
+            }
+            else if ($scope.labels.length > 100) {
+                skip = 15;
+            }
+            else if ($scope.labels.length > 150) {
+                skip = 20;
+            }
+            else if ($scope.labels.length > 200) {
+                skip = 25;
+            }
+            else if ($scope.labels.length > 250) {
+                skip = 30;
+            }
+            else if ($scope.labels.length > 300) {
+                skip = 35;
+            }
 
             for (var i = 0; i < $scope.labels.length; i++) {
                 if (i % skip != 0) {
