@@ -1,58 +1,76 @@
-body{
-	background-image: url("images/gatorloopbg.jpg");
+#main{
+	background-image: url("images/background-03.png");
 	background-size: cover;
+	height: 100vh;
+
 }
-h1{
+
+/* TITLE MIGHT NOT BE NEEDED*/
+#gl-header{
 	color: white;
 	text-align: center;
-	font-size: 60px;
-	font-family: cursive;		/* possible pod animation following letters? */
-	padding-bottom: 3%;
 }
-.col-xs-4{
-	height:280px;
+
+/*TRACK AND ITS SUB PARTS*/
+#track{
+    width: auto;
+    position: relative;
+
 }
-#position{
-	margin-left: 5%;
-	margin-right: 5%;
-	width: 90%;
-	height: 150px;
-	padding-bottom: 3%;
+#verts{
+    width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
-#info{
-	text-align: center;
-	margin: 0 auto;
-	margin-top: 5%;
-	background-color: white;
-	border: 1px grey;
-	width: 70%;
-	height:auto;
-	opacity: .8;
+#horz {
+    width: 99%;
+  height: 1px;
+  position: absolute;
+  top: 0;
+  left: 0;
+    z-index: 10;
+    background: white
 }
-#category{
-	font-size: 40px;
+.tick {
+	width: 1px;
+	height: 10px;
+	background: white;
+    
 }
-#value{
-	font-size: 60px;
+.big-tick {
+	width: 1px;
+	height: 20px;
+	background: white;
+
 }
-#graphLabel{
-	color:white;
-	font-size: 40px;
-	text-align: center;
+table.ticks {
+    display: table;
+    width: 100%;
+    table-layout: fixed;    /* For cells of equal size */
 }
-#graph{
-	width: 100%;
-	height: 100%;
+table.ticks td {
+    display: table-cell;
+    vertical-align: top;
 }
-#stop{
-	text-align: center;
-	margin-top: 5%;
-	width: 100%;
-	height:40%;
-	background-color: red;
-	border: 2px solid black;
+
+/*STOP COMMAND and TIMER*/
+
+.actionBtn {
+    background-size: 100px;
+    height: 45px;  
+    width: 100px;
 }
-#stopMessage{
-	font-size: 50px;
-	color: white;
+
+#stopBtn{
+    background-image: url( 'images/stopbutton.png' );
+}
+
+
+/*Might need to do another table and nested tds*/
+div#timer > h3 {
+    color: white;
+    text-align: center;
+    
 }

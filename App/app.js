@@ -1,4 +1,4 @@
-﻿var app = angular.module('MainApp',
+var app = angular.module('MainApp',
     [
         'MainApp.Public','chart.js'
     ]
@@ -6,8 +6,7 @@
 
 app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 
-
-    $urlRouterProvider.otherwise("/");
+    $urlRouterProvider.otherwise("/dashboard");
 
     $locationProvider.html5Mode(true);
 
@@ -18,10 +17,8 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
             controller: 'MainApp.Public.homeCTRL'
         })
         .state('dashboard', {
-            url: "/",
+            url: "/dashboard",
             templateUrl: "/App/Modules/Public/views/dashboard.html",
             controller: 'MainApp.Public.dashboardCTRL'
         });
-
-
 });

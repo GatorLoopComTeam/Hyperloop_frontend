@@ -1,68 +1,140 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>GatorLoop</title>
-</head>
-<body>
-	<h1>GatorLoop</h1>
-    <button ng-click="addData()">ADD DATA</button>
-    <button ng-click="makeLabelsSmaller()">CHANGE LABELS</button>
-    <button ng-click="getTimeSinceLaunch()" >Get time since</button>
-	<div class = "containter">
-		<div class = "row">
-			<div class = 'col-xs-12'>
-				<img id="position" src="/Content/images/pod.jpg">
-			</div>
-		</div>
-		<div class="row" id ="topRow">
-			<div class = 'col-xs-4'>
-				<div id ="info">
-					<span id = "category"><u>Velocity</u></span>
-					<p id="value">{{latestVelocity}}</p>
-				</div>
-				<div id ="info">
-					<span id = "category"><u>Acceleration</u></span>
-					<p id="value">{{latestAcceleration}}</p>
-				</div>
-				<div id ="info">
-					<span id = "category"><u>Position</u></span>
-					<p id="value">{{latestPosition}}</p>
-				</div>
-			</div>
-			<div class = 'col-xs-4'>
-				<p ng-show="showGraph[0]" id ="graphLabel">Velocity</p>
-                <p ng-show="showGraph[1]" id ="graphLabel">Acceleration</p>
-                <p ng-show="showGraph[2]" id ="graphLabel">Temperature</p>
-                <canvas ng-show="{{showGraph[0]}}" id="velocityGraph" class="chart chart-line" chart-options="chartOptions" chart-data="velAccData"
-                    chart-labels="labels" chart-legend="{{showGraph[0]}}"
-                    chart-click="onClick" >
-                </canvas>
-                <canvas ng-show="showGraph[1]" id="accelerationGraph" class="chart chart-line" chart-options="chartOptions" chart-data="velAccData"
-                    chart-labels="labels" chart-legend="{{showGraph[1]}}" chart-series="series"
-                    chart-click="onClick" >
-                </canvas>
-                <canvas ng-show="showGraph[2]" id="temperatureGraph" class="chart chart-line" chart-options="chartOptions" chart-data="velAccData"
-                    chart-labels="labels" chart-legend="{{showGraph[2]}}" chart-series="series"
-                    chart-click="onClick" >
-                </canvas>
-				<button type="button" class="btn btn-danger center-block">Stop Pod</button>
-			</div>
-			<div class = 'col-xs-4'>
-				<div id ="info">
-					<span id = "category"><u>Pitch</u></span>
-					<p id="value">{{latestPitch}}</p>
-				</div>
-				<div id ="info">
-					<span id = "category"><u>Roll</u></span>
-					<p id="value">{{latestRoll}}</p>
-				</div>
-				<div id ="info">
-					<span id = "category"><u>Yaw</u></span>
-					<p id="value">{{latestYaw}}</p>
-				</div>
-			</div>
-		</div>
-	</div>
-</body>
-</html>
+<div id='main' class="container-fluid">
+    <div class='row'>
+        <h1 id="gl-header">Gatorloop</h1>
+    </div>
+    <div class='row'>
+        <div class="col-lg-8 col-md-offset-1">
+            <div id="track">
+                <div id="horz">
+                </div>
+                <div id="verts">
+                    <table class="ticks">
+                        <td><div class="big-tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="big-tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <!--            -->
+                        <td><div class="big-tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="big-tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <!--            -->
+                        <td><div class="big-tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="big-tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <!--            -->
+                        <td><div class="big-tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="big-tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <!--            -->
+                        <td><div class="big-tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="big-tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <!--            -->
+                        <td><div class="big-tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="big-tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <!--            -->
+                        <td><div class="big-tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="big-tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <!--            -->
+                        <td><div class="big-tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="big-tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <!--            -->
+                        <td><div class="big-tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="big-tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <!--            -->
+                        <td><div class="big-tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="big-tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="tick"></div></td>
+                        <td><div class="big-tick"></div></td>
+                        <!--            -->
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2">
+            <span style="display: inline-block; vertical-align: center;">
+            <div class="actionBtn" id="stopBtn" ></div>
+            </span>
+            <span style="display: inline-block; vertical-align: center;"><div id="timer">
+                <h3>0.00</h3>
+            </div>
+            </span>
+            
+        </div>
+    </div>
+    <div id='middle'></div>
+    <div id='logo'></div>
+</div>
