@@ -3,7 +3,12 @@
         <h1 id="gl-header">Gatorloop</h1>
     </div>
     <div class='row'>
-        <div class="col-lg-8 col-md-offset-1">
+        <div id="podCourse" class="col-md-7 col-md-offset-2">
+            <div id='pod'></div>
+        </div>
+    </div>
+    <div class='row'>
+        <div class="col-md-7 col-md-offset-2 col-xs-12">
             <div id="track">
                 <div id="horz">
                 </div>
@@ -124,17 +129,68 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-2">
-            <span style="display: inline-block; vertical-align: center;">
-            <div class="actionBtn" id="stopBtn" ></div>
-            </span>
-            <span style="display: inline-block; vertical-align: center;"><div id="timer">
-                <h3>0.00</h3>
+        <div id="actionArea" class="col-md-2 col-xs-12">
+            <div class='row'>
+                <div class="col-md-6">
+                    <div class="stopAction" id="stopBtn" ></div>
+                </div>
+                <div class="col-md-6">
+                    <div id="timer">
+                        <p id="timer-num">0.00</p>
+                    </div>
+                </div>
             </div>
-            </span>
             
         </div>
     </div>
-    <div id='middle'></div>
+    <div class="row">
+        <div class="col-md-6 col-lg-offset-1">
+                <canvas ng-show="{{showGraph[0]}}" id="velocityGraph" class="chart chart-line" chart-options="chartOptions" chart-data="velAccData"
+                    chart-labels="labels" chart-legend="{{showGraph[0]}}"
+                    chart-click="onClick" >
+                </canvas>
+        </div>
+        <div class="col-md-6"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-7 col-lg-6 col-lg-offset-1">
+            <table class="attGroup">
+                <td>
+                    <div id="vel" class="attBtns" ></div>
+                </td>
+                <td>
+                    <div id="acc" class="attBtns"></div>
+                </td>
+                
+                <td>
+                    <div id="pos" class="attBtns"></div>
+                </td>
+            </table>
+        </div>
+        <div class="col-md-5 col-lg-4">
+            <table class="rpyGroup">
+                <td>
+                    <div id="pit" class="rpyBtns">
+                    </div>
+                </td>
+                <td>
+                    <div id="roll" class="rpyBtns">
+                    </div>
+                </td>
+                
+                <td>
+                    <div id="yaw" class="rpyBtns">
+                    </div>
+                </td>
+            </table>
+        </div>
+    </div>
+    <div id='middle'>
+        <button ng-click="addData()">ADD DATA</button>
+<!--
+    <button ng-click="makeLabelsSmaller()">CHANGE LABELS</button>
+    <button ng-click="getTimeSinceLaunch()" >Get time since</button>
+-->
+    </div>
     <div id='logo'></div>
 </div>
